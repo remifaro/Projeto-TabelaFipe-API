@@ -15,12 +15,16 @@ public class ConsumoApi {
                 .uri(URI.create(endereco))
                 .build();
         HttpResponse<String> response = null;
-
+       
         try {
+            
+        // Aqui o client manda uma requisição e salvo a sua resposta    
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException e){
+
+        // Os catchs são os tratamentos das exceções
+        } catch (IOException e) {
             throw new RuntimeException(e);
-        } catch (InterruptedException e){
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 

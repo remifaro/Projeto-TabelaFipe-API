@@ -10,11 +10,12 @@ public class Principal {
         private ConsumoApi consumo = new ConsumoApi();
 
         private final String ENDERECO = "https://parallelum.com.br/fipe/api/v1/";
+        private final String API_KEY = "/marcas";
 
         public void exibeMenu(){
             System.out.println("**** OPÇÕES **** \n Carro \n Moto \n Caminhão \n \n Digite uma das opções para consultar valores:");
             var opcaoInicial = leitura.nextLine();
-            var json = consumo.obterDados(ENDERECO + opcaoInicial);
+            var json = consumo.obterDados(ENDERECO + opcaoInicial + API_KEY);
             
             System.out.println(json);
         }
