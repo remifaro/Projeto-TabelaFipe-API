@@ -6,18 +6,36 @@ import br.com.alura.tabelafipeapi.service.ConsumoApi;
 
 public class Principal {
 
-        private Scanner leitura = new Scanner(System.in);
-        private ConsumoApi consumo = new ConsumoApi();
+    private Scanner leitura = new Scanner(System.in);
+    private ConsumoApi consumo = new ConsumoApi();
 
-        private final String ENDERECO = "https://parallelum.com.br/fipe/api/v1/";
-        private final String API_KEY = "/marcas";
+    private final String URL_BASE = "https://parallelum.com.br/fipe/api/v1/";
 
-        public void exibeMenu(){
-            System.out.println("**** OPÇÕES **** \n Carro \n Moto \n Caminhão \n \n Digite uma das opções para consultar valores:");
-            var opcaoInicial = leitura.nextLine();
-            var json = consumo.obterDados(ENDERECO + opcaoInicial + API_KEY);
-            
-            System.out.println(json);
+    public void exibeMenu() {
+        var menu = """
+                **** OPÇÕES ****
+                Carro
+                Moto
+                Caminhão
+
+                Digite uma das opções para consultar valores:
+                        """;
+
+        System.out.println(menu);
+        var opcao = leitura.nextLine();
+
+        String endereco;
+
+        if (opcao.toLowerCase().contains("carr")){
+            endereco = URL_BASE + "carros/marcas";
+        } else if (opcao.toLowerCase().contains("mot")){
+            endereco = URL_BASE + "motos/marcas";
+        } else {
+            endereco = URL_BASE + "caminhoes/marcas";
         }
-        
+
+        var json = consumo.obterDados(endereco);
+        System.out.println(json);
+    }
+
 }
